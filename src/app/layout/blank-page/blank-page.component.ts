@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import API from "../../API/API";
 @Component({
@@ -9,6 +9,7 @@ import API from "../../API/API";
 })
 export class BlankPageComponent implements OnInit {
     current_products = [];
+    searchValue : string;
     constructor() {}
 
     ngOnInit() {
@@ -25,4 +26,15 @@ export class BlankPageComponent implements OnInit {
         });
     }
 
+    search(value){
+        this.searchValue = value; 
+        console.log("====>" + value);
+    }
+
+    isDisplay( item , value ){
+        if (value == null || value == "") return true;
+        if ( item.name && item.name.indexOf(value) >= 0 ) return true;
+        if ( item.description && item.description.indexOf(value) >= 0 ) return true;
+        return false;
+    }
 }

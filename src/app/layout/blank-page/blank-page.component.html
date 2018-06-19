@@ -2,10 +2,15 @@
 
     <div class="page-header">
         <h1>Products in sale</h1>
+        <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" #searchbar (keyup)="search(searchbar.value)" type="text" placeholder="{{ 'Search' }}" >
+            </form>
         <hr>
     </div>
     <div class="row">
-        <div *ngFor="let item of current_products; let i = index" class="col-sm-4">
+            <ng-container *ngFor="let item of current_products; let i = index">
+
+        <div  *ngIf='isDisplay(item,searchValue)'  class="col-sm-4"  >
 
                 <div class="card text-white bg-warning mb-3">
                         <div class="card-header">{{item.name}}</div>
@@ -25,6 +30,7 @@
                     </div>
         </div>
 
+    </ng-container>>
         <!-- /.col-sm-4 -->
     </div>
 </div>
