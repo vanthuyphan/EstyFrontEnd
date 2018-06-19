@@ -59,6 +59,14 @@ export class SidebarComponent {
     }
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('token');
+    }
+
+    get token(): any {
+        return localStorage.getItem('token');
+    }
+
+    get email(): any {
+        return localStorage.getItem('email');
     }
 }

@@ -9,23 +9,37 @@
             <input class="form-control mr-sm-2" type="text" placeholder="{{ 'Search' }}" >
         </form>
         <ul class="navbar-nav ml-auto">
-            
+            <div *ngIf="token">
+                <li class="nav-item dropdown" ngbDropdown>
+                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+                        <i class="fa fa-user"></i> {{email}} <b class="caret"></b>
+                    </a>
+                    <div class="dropdown-menu-right" ngbDropdownMenu>
+                        <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
+                            <i class="fa fa-fw fa-power-off"></i>  Log Out
+                        </a>
+                    </div>
+                </li>
+            </div>
+            <div *ngIf="!token">
+                <li class="nav-item dropdown" ngbDropdown>
+                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+                        <i class="fa fa-user"></i> ? <b class="caret"></b>
+                    </a>
+                    <div class="dropdown-menu-right" ngbDropdownMenu>
+
+                        <a class="dropdown-item" [routerLink]="['/signup']" (click)="onLoggedout()">
+                            <i class="fa fa-fw fa-power-off"></i>  Sign Up
+                        </a>
+                        <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
+                            <i class="fa fa-fw fa-power-off"></i>  Log In
+                        </a>
+                    </div>
+                </li>
+            </div>
            
          
-            <li class="nav-item dropdown" ngbDropdown>
-                <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                    <i class="fa fa-user"></i> Bati <b class="caret"></b>
-                </a>
-                <div class="dropdown-menu-right" ngbDropdownMenu>
-                    
-                    <a class="dropdown-item" href="javascript:void(0)">
-                        <i class="fa fa-fw fa-gear"></i> Settings
-                    </a>
-                    <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
-                        <i class="fa fa-fw fa-power-off"></i>  Log Out
-                    </a>
-                </div>
-            </li>
+
         </ul>
     </div>
 </nav>

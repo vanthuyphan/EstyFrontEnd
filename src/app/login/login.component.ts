@@ -27,8 +27,9 @@ export class LoginComponent implements OnInit {
 
     login(user) {
         API.login(user.email, user.password, (response) => {
-            console.log("Response", response);
-            this.router.navigate(['/products']);
+            localStorage.setItem('token', response.token);
+            localStorage.setItem('email', response.email);
+            this.router.navigate(['/']);
         });
     }
 }

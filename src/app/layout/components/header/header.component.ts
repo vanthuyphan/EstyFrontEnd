@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
     constructor(public router: Router) {
 
-  
+
         const browserLang = "en";
 
         this.router.events.subscribe(val => {
@@ -44,10 +44,18 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('token');
     }
 
     changeLang(language: string) {
-        
+
+    }
+
+    get token(): any {
+        return localStorage.getItem('token');
+    }
+
+    get email(): any {
+        return localStorage.getItem('email');
     }
 }
