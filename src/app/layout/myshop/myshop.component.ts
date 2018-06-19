@@ -9,6 +9,7 @@ import {IProductState,addProduct, getDatas} from "./store";
   animations:[routerTransition()]
 })
 export class MyshopComponent implements OnInit {
+  
   products = getDatas();
   constructor() {
     

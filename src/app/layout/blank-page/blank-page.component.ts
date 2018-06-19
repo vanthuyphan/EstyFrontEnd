@@ -13,7 +13,7 @@ export class BlankPageComponent implements OnInit {
 
     ngOnInit() {}
 
-    buyProduct(p){
-        console.log(p);
+    buyProduct( product ){
+        console.log(product);
     }
 }

@@ -8,8 +8,8 @@ const routes: Routes = [
         path: '',
         component: LayoutComponent,
         children: [
-            { path: '', redirectTo: 'blank-page' },
-            { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
+            { path: '', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
+
             {path: 'myshop', loadChildren: './myshop/myshop.module#MyshopModule'},
             {path: 'card', loadChildren: './card/card.module#CardModule'},
             {path: 'sold', loadChildren: './sold/sold.module#SoldModule'},

@@ -8,13 +8,14 @@ import { Router, NavigationEnd } from '@angular/router';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+    
     pushRightClass: string = 'push-right';
-
+    searchvalue : string;
+    
     constructor(public router: Router) {
 
-
         const browserLang = "en";
-
+        
         this.router.events.subscribe(val => {
             if (
                 val instanceof NavigationEnd &&
@@ -24,8 +25,12 @@ export class HeaderComponent implements OnInit {
                 this.toggleSidebar();
             }
         });
-    }
 
+    }
+    search(value){
+        this.searchvalue = value;
+        console.log(value); 
+    }
     ngOnInit() {}
 
     isToggled(): boolean {
