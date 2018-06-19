@@ -1,5 +1,9 @@
 <div [@routerTransition]>
     <app-collapse></app-collapse>
+
+
+
+
     <div class="page-header">
         <h1>Items in my shop</h1>
         <hr>
@@ -12,7 +16,18 @@
             <div *ngIf="filterSold(item,checkbox.checked)" class="col-sm-4">
 
                 <div class="card text-white bg-warning mb-3">
-                    <div class="card-header">{{item.name}}</div>
+                    <div mat-raised-button color="primary" [mdePopoverTriggerFor]="appPopover" mdePopoverTriggerOn="click" class="card-header">{{item.name}}
+                        <mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false">
+                            <mat-card style="max-width: 300px">
+                                <mat-card-content>
+                                    {{item.desc}}
+                                </mat-card-content>
+                            </mat-card>
+                        </mde-popover>
+
+
+
+                    </div>
                     <div class="card-body">
                         <h4 class="card-title">{{item.name}}</h4>
                         <p class="card-text">
@@ -26,6 +41,6 @@
             </div>
 
         </ng-container>
-            <!-- /.col-sm-4 -->
+        <!-- /.col-sm-4 -->
     </div>
 </div>
