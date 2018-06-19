@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from '../sharedp/product.model';
-import {ProductService} from '../sharedp/product.service';
+import {Product} from '../shared/product.model';
+import {ProductService} from '../shared/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 
@@ -22,21 +22,11 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     const heroId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.productService.getHeroById(heroId).subscribe((hero: Product) => {
+    this.productService.getProductById(heroId).subscribe((hero: Product) => {
       this.hero = hero;
     });
   }
 
-  like(product: Product) {
-    return new Promise((resolve, reject) => {
-      this.productService.like(product).subscribe(() => {
-        this.canVote = ProductService.checkIfUserCanVote();
-        resolve(true);
-      }, (error) => {
-        reject(error);
-      });
-    });
-  }
 
   dynamicImport() {
     /*import('html2canvas').then((html2canvas: any) => {

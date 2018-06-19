@@ -2,29 +2,21 @@
     <div fxFlex="10" fxFlex.gt-sm="20"></div>
     <div fxFlex="90" fxFlex.gt-sm="80">
         <h1 class="header__title">{{'Products'}}</h1>
-        <mat-progress-spinner *ngIf="!heroes"
+        <mat-progress-spinner *ngIf="!products"
                               class="progress__spinner"
                               [color]="'primary'"
                               [mode]="'indeterminate'">
         </mat-progress-spinner>
-        <div id="heroes-list" *ngIf="heroes">
-            <ng-container *ngFor="let hero of heroes">
+        <div id="heroes-list" *ngIf="products">
+            <ng-container *ngFor="let product of products">
                 <mat-card class="hero-card">
                     <mat-card-header>
-                        <div (click)="seeHeroDetails(hero)" mat-card-avatar class="hero-header__image"
-                             [ngStyle]="{'background-image': 'url(assets/images/heroes/' + hero.id + '-thumbnail.jpg)'}"></div>
-                        <mat-card-title (click)="seeHeroDetails(hero)">{{hero.name}}</mat-card-title>
-                        <mat-card-subtitle (click)="seeHeroDetails(hero)">{{hero.alterEgo}}</mat-card-subtitle>
+                        <div (click)="seeProductDetails(product)" mat-card-avatar class="hero-header__image"
+                             [ngStyle]="{'background-image': 'url(assets/images/heroes/' + 1 + '-thumbnail.jpg)'}"></div>
+                        <mat-card-title (click)="seeProductDetails(product)">{{product.name}}</mat-card-title>
                         <div class="flex-spacer"></div>
-                        <div class="hero-actions">
-                            {{hero.likes}}
-                            <mat-icon matTooltip="{{(canVote ? 'canVote' : 'cannotVote')}}"
-                                      [matTooltipPosition]="'above'"
-                                      class="icon__like--red" (click)="like(hero)">favorite
-                            </mat-icon>
-                        </div>
                     </mat-card-header>
-                    <img (click)="seeHeroDetails(hero)" mat-card-image src="assets/images/heroes/{{hero.id}}.jpg">
+                    <img (click)="seeProductDetails(product)" mat-card-image src="assets/images/heroes/1.jpg">
                 </mat-card>
             </ng-container>
         </div>

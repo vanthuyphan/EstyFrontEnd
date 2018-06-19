@@ -1,11 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Product} from '../sharedp/product.model';
-import {ProductService} from '../sharedp/product.service';
+import {Product} from '../shared/product.model';
+import {ProductService} from '../shared/product.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material';
-import {AppConfig} from '../../../config/app.config';
 import {Router} from '@angular/router';
-import {LoggerService} from '../../../core/shared/logger.service';
 
 @Component({
   selector: 'app-remove-hero-dialog',
@@ -35,7 +33,6 @@ export class ProductListComponent implements OnInit {
               private dialog: MatDialog,
               private router: Router,
               private formBuilder: FormBuilder) {
-    this.canVote = ProductService.checkIfUserCanVote();
 
     this.newHeroForm = this.formBuilder.group({
       'name': new FormControl('', [Validators.required]),
@@ -44,23 +41,15 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.heroService.getHeroes().subscribe((heroes: Array<Product>) => {
+    this.heroService.getProducts().subscribe((heroes: Array<Product>) => {
       this.heroes = heroes.sort((a, b) => {
         return b.likes - a.likes;
       });
     });
   }
 
-  like(hero: Product) {
-    this.heroService.like(hero).subscribe(() => {
-      this.canVote = ProductService.checkIfUserCanVote();
-    }, (error: Response) => {
-      LoggerService.error('maximum votes limit reached', error);
-    });
-  }
-
   createNewHero(newHero: Product) {
-    this.heroService.createHero(newHero).subscribe((newHeroWithId) => {
+    this.heroService.createProduct(newHero).subscribe((newHeroWithId) => {
       this.heroes.push(newHeroWithId);
       this.myNgForm.resetForm();
     }, (response: Response) => {
@@ -72,7 +61,7 @@ export class ProductListComponent implements OnInit {
 
   seeHeroDetails(hero): void {
     if (hero.default) {
-      this.router.navigate([AppConfig.routes.products + '/' + hero.id]);
+      this.router.navigate([ + 'products/' + hero.id]);
     }
   }
 
@@ -80,7 +69,7 @@ export class ProductListComponent implements OnInit {
     const dialogRef = this.dialog.open(RemoveProductDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.heroService.deleteHeroById(heroToRemove.id).subscribe(() => {
+        this.heroService.deleteProductById(heroToRemove.id).subscribe(() => {
           this.heroService.showSnackBar('heroRemoved');
           this.heroes = this.heroes.filter(hero => hero.id !== heroToRemove.id);
         }, (response: Response) => {

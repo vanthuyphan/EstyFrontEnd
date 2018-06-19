@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Product} from '../sharedp/product.model';
-import {ProductService} from '../sharedp/product.service';
-import {AppConfig} from '../../../config/app.config';
-import {Router} from '@angular/router';
+import {Component, OnInit} from "@angular/core";
+import {Product} from "../shared/product.model";
+import {ProductService} from "../shared/product.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-hero-top',
@@ -11,36 +10,22 @@ import {Router} from '@angular/router';
 })
 export class ProductTopComponent implements OnInit {
 
-  heroes: Product[] = null;
-  canVote = false;
+  products: Product[] = null;
 
   constructor(private productService: ProductService,
               private router: Router) {
-    this.canVote = ProductService.checkIfUserCanVote();
   }
 
   ngOnInit() {
-    this.productService.getHeroes().subscribe((heroes) => {
-      this.heroes = heroes.sort((a, b) => {
-        return b.likes - a.likes;
-      }).slice(0, AppConfig.topHeroesLimit);
+    this.productService.getProducts().subscribe((products) => {
+      console.log("Done fetching products");
+      this.products = products;
     });
   }
 
-  like(hero: Product): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.productService.like(hero).subscribe(() => {
-        this.canVote = ProductService.checkIfUserCanVote();
-        resolve(true);
-      }, (error) => {
-        reject(error);
-      });
-    });
-  }
-
-  seeHeroDetails(hero): void {
-    if (hero.default) {
-      this.router.navigate([AppConfig.routes.products + '/' + hero.id]);
+  seeProductDetails(product): void {
+    if (product.default) {
+      this.router.navigate(['products/' + product.id]);
     }
   }
 }

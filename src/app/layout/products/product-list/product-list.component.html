@@ -9,12 +9,12 @@
     <mat-list>
       <mat-list-item *ngFor="let hero of heroes">
         <img *ngIf="hero.default" class="cp"
-             (click)="seeHeroDetails(hero);" mat-list-avatar
+             (click)="seeProductDetails(hero);" mat-list-avatar
              src="assets/images/heroes/{{hero.id}}-thumbnail.jpg">
         <img *ngIf="!hero.default"
-             (click)="seeHeroDetails(hero);" mat-list-avatar src="assets/images/heroes/default.png">
-        <h3 mat-line [class.cp]="hero.default" (click)="seeHeroDetails(hero);"> {{hero.name}} </h3>
-        <p mat-line [class.cp]="hero.default" (click)="seeHeroDetails(hero);">
+             (click)="seeProductDetails(hero);" mat-list-avatar src="assets/images/heroes/default.png">
+        <h3 mat-line [class.cp]="hero.default" (click)="seeProductDetails(hero);"> {{hero.name}} </h3>
+        <p mat-line [class.cp]="hero.default" (click)="seeProductDetails(hero);">
           <span>{{hero.alterEgo}}</span>
         </p>
         <div class="hero-actions">
@@ -36,12 +36,12 @@
 <div id="right">
   <h2 class="header__title">{{ 'Create Product'}}</h2>
   <div>
-    <form [formGroup]="newHeroForm" #form="ngForm" (ngSubmit)="createNewHero(newHeroForm.value)">
+    <form [formGroup]="signupForm" #form="ngForm" (ngSubmit)="createNewHero(signupForm.value)">
       <mat-form-field class="input-container">
         <input matInput type="text"
                placeholder="{{'name'}}"
                formControlName="name">
-        <mat-error *ngIf="!newHeroForm.controls.name.valid && newHeroForm.controls.name.touched">
+        <mat-error *ngIf="!signupForm.controls.name.valid && signupForm.controls.name.touched">
           {{'name is required'}}
         </mat-error>
       </mat-form-field>
@@ -50,12 +50,12 @@
         <input matInput type="text"
                placeholder="{{'real name'}}"
                formControlName="alterEgo">
-        <mat-error *ngIf="!newHeroForm.controls.alterEgo.valid && newHeroForm.controls.alterEgo.touched">
+        <mat-error *ngIf="!signupForm.controls.alterEgo.valid && signupForm.controls.alterEgo.touched">
           {{'real Name Required'}}
         </mat-error>
       </mat-form-field>
 
-      <button mat-raised-button type="submit" [disabled]="!newHeroForm.valid">
+      <button mat-raised-button type="submit" [disabled]="!signupForm.valid">
         {{'Create'}}
       </button>
 

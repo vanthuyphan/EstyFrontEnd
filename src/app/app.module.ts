@@ -18,6 +18,7 @@ import {environment} from "../environments/environment";
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgRedux, NgReduxModule } from '@angular-redux/store'
 
 @NgModule({
   imports: [
