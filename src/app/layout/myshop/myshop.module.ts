@@ -16,7 +16,7 @@ import { FormGroup, Validators, FormBuilder, FormControl, NgForm } from '@angula
 
 @NgModule({
     imports: [CommonModule, MyshopRoutingModule ,FormsModule,ReactiveFormsModule,SharedModule ],
-    declarations: [MyshopComponent , CollapseComponent]
+    declarations: [MyshopComponent]
 })
 export class MyshopModule {
 

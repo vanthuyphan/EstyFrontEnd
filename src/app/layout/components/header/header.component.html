@@ -10,7 +10,7 @@
             <div *ngIf="token">
                 <li class="nav-item dropdown" ngbDropdown>
                     <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                        <i class="fa fa-user"></i> {{email}} <b class="caret"></b>
+                        <i class="fa fa-user"></i> {{name}} <b class="caret"></b>
                     </a>
                     <div class="dropdown-menu-right" ngbDropdownMenu>
                         <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">

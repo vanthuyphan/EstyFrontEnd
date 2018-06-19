@@ -89,6 +89,24 @@ exports.register = (name, email, password, cb) => {
     });
 }
 
+exports.addProduct = (name, description, price, cb) => {
+    const data = {
+        method: 'POST',
+        url: domain + "/products",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name,
+            description,
+            price
+        })
+    };
+    request(data, (err, httpResponse, body) => {
+        cb(err, body);
+    });
+}
+
 exports.login = (email, password, cb) => {
     console.log("loggin in");
     const data = {
@@ -147,6 +165,21 @@ exports.buy = (productID, cb) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({status: "sold"})
+    };
+    console.log("Request" , data.body);
+    request(data, (err, httpResponse, body) => {
+        cb(err, body);
+    });
+}
+
+exports.deleteProduct = (productID, cb) => {
+    const data = {
+        method: 'DELETE',
+        url: domain + "/products/" + productID,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
     };
     console.log("Request" , data.body);
     request(data, (err, httpResponse, body) => {
