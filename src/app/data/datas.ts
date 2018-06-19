@@ -24,8 +24,7 @@ export var productsInSale = [
 ];
 
 
-export function getProductsInsale(){
-    return productsInSale;
+export function getProductsInsale(callback){
 }
 
 

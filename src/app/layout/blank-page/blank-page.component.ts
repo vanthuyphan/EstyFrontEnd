@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-import { getProductsInsale } from '../../data/datas'
+import API from "../../API/API";
 @Component({
     selector: 'app-blank-page',
     templateUrl: './blank-page.component.html',
@@ -8,12 +8,21 @@ import { getProductsInsale } from '../../data/datas'
     animations :[routerTransition()]
 })
 export class BlankPageComponent implements OnInit {
-    current_products = getProductsInsale(); 
+    current_products = [];
     constructor() {}
 
-    ngOnInit() {}
-
-    buyProduct( product ){
-        console.log(product);
+    ngOnInit() {
+        API.activeProducts((products => {
+            this.current_products = products
+        }));
     }
+
+    buyProduct( productID ){
+        API.buy(productID, () => {
+            API.activeProducts((products => {
+                this.current_products = products
+            }));
+        });
+    }
+
 }
