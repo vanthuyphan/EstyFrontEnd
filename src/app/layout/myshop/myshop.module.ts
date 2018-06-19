@@ -11,6 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {SharedModule} from "../../shared/modules/shared.module";
 import { IProductState, rootReduce, INITIAL_STATE } from './store';
 import { NgRedux } from '@angular-redux/store';
+import { FormGroup, Validators, FormBuilder, FormControl, NgForm } from '@angular/forms';
+
+
 @NgModule({
     imports: [CommonModule, MyshopRoutingModule ,FormsModule,ReactiveFormsModule,SharedModule ],
     declarations: [MyshopComponent , CollapseComponent]
