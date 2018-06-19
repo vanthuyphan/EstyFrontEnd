@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 
@@ -10,10 +10,9 @@ import { Router, NavigationEnd } from '@angular/router';
 export class HeaderComponent implements OnInit {
     
     pushRightClass: string = 'push-right';
-    searchvalue : string;
-    
+ 
     constructor(public router: Router) {
-
+       
         const browserLang = "en";
         
         this.router.events.subscribe(val => {
@@ -27,10 +26,8 @@ export class HeaderComponent implements OnInit {
         });
 
     }
-    search(value){
-        this.searchvalue = value;
-        console.log(value); 
-    }
+
+
     ngOnInit() {}
 
     isToggled(): boolean {
