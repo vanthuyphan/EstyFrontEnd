@@ -18,13 +18,10 @@ import { MdePopoverModule } from '@material-extended/mde';
 
 
 @NgModule({
-    imports: [CommonModule, 
-        MyshopRoutingModule ,
-        FormsModule,
-        ReactiveFormsModule,
-        SharedModule,MatButtonModule, MatCardModule, MatToolbarModule,MdePopoverModule
-     ],
-    declarations: [MyshopComponent , CollapseComponent]
+
+    imports: [CommonModule, MyshopRoutingModule ,FormsModule,ReactiveFormsModule,SharedModule,MatButtonModule, MatCardModule, MatToolbarModule,MdePopoverModule ],
+    declarations: [MyshopComponent]
+
 })
 export class MyshopModule {
 

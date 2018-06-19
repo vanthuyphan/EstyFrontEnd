@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { routerTransition } from '../../router.animations';
-import { FormGroup, Validators, FormBuilder, FormControl, NgForm } from '@angular/forms';
-import {IProductState,addProduct, getDatas} from "./store";
+import {Component, OnInit} from "@angular/core";
+import {routerTransition} from "../../router.animations";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import API from "../../API/API";
 @Component({
   selector: 'app-myshop',
   templateUrl: './myshop.component.html',
@@ -9,32 +9,52 @@ import {IProductState,addProduct, getDatas} from "./store";
   animations:[routerTransition()]
 })
 export class MyshopComponent implements OnInit {
-  
-  products = getDatas();
-  constructor() {
-    
+
+  productCreateForm: FormGroup;
+  products = [];
+  constructor(private formBuilder: FormBuilder) {
+    this.productCreateForm = this.formBuilder.group({
+      'name': new FormControl('', [Validators.required]),
+      'description': new FormControl('', [Validators.required]),
+      'price': new FormControl('', [Validators.required])
+    });
   }
 
   ngOnInit() {
+    API.products((products => {
+      this.products = products
+    }));
 
   }
   filterSold(item,checked){
     console.log("--->" + item + " " + checked);
     if (checked == true ) {
-      if ( item == null ) return true;
-      if ( item.status == "sold") return true;
-      return false;
+      return item.status == "sold";
     }
-
     return true;
   }
-  deleteProduct(item){
 
-    this.products.forEach( (it, index) => {
-      if(it === item) this.products.splice(index,1);
-    });
-    console.log("======>" + item);
+  filterActive(item,checked){
+    console.log("--->" + item + " " + checked);
+    if (checked == true ) {
+      return item.status == "sale";
+    }
+    return true;
   }
 
+  deleteProduct(item){
+    API.deleteProduct(item._id, () => {
+      API.products((products => {
+        this.products = products
+      }));
+    });
+  }
 
+  createProduct(f) {
+    API.addProduct(f.name, f.description, f.price, () => {
+      API.products((products => {
+        this.products = products
+      }));
+    });
+  }
 }

@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
         API.login(user.email, user.password, (response) => {
             localStorage.setItem('token', response.token);
             localStorage.setItem('email', response.email);
+            localStorage.setItem('name', response.name);
             this.router.navigate(['/']);
         });
     }

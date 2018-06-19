@@ -60,4 +60,8 @@ export class HeaderComponent implements OnInit {
     get email(): any {
         return localStorage.getItem('email');
     }
+
+    get name(): any {
+        return localStorage.getItem('name');
+    }
 }
