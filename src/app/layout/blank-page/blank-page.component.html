@@ -15,17 +15,17 @@
                 <div class="card text-white bg-warning mb-3">
                         <div class="card-header">{{item.name}}</div>
                         <div class="card-body">
-                            <h4 class="card-title">{{item.name}}</h4>
+                            <h4 class="card-title">{{item.description}}</h4>
                             <p class="card-text">
                                 <img class="img-thumbnail" width="100px" height="100px" src="http://placehold.it/400x400" alt="" /> {{item.desc}}
                             </p>
                             <p class="card-text">
-                                    Saler: {{item.vendor.name}}
-                            </p>
-                            <p class="card-text">
                             Price: {{item.price}}
                             </p>
-                            <button type="submit" class="btn btn-sm btn-info" (click)="buyProduct(item)">buy</button>
+                            <p class="card-text">
+                                Status: {{item.status}}
+                            </p>
+                            <button type="submit" class="btn btn-sm btn-info" (click)="buyProduct(item._id)">Buy</button>
                         </div>
                     </div>
         </div>

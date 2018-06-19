@@ -27,7 +27,7 @@ function request(data, callback) {
         headers['Authentication'] = data.headers.Authentication;
     }
     const authOptions = {
-        method: 'POST',
+        method: data.method,
         url: data.url,
         headers: headers,
         data: data.body,
@@ -101,6 +101,52 @@ exports.login = (email, password, cb) => {
             email,
             password
         })
+    };
+    console.log("Request" , data.body);
+    request(data, (err, httpResponse, body) => {
+        cb(err, body);
+    });
+}
+
+exports.products = (cb) => {
+    console.log("loggin in");
+    const data = {
+        method: 'GET',
+        url: domain + "/products",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+    };
+    console.log("Request" , data.body);
+    request(data, (err, httpResponse, body) => {
+        cb(err, body);
+    });
+}
+
+exports.activeProducts = (cb) => {
+    const data = {
+        method: 'GET',
+        url: domain + "/products/active-products",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+    };
+    console.log("Request" , data.body);
+    request(data, (err, httpResponse, body) => {
+        cb(err, body);
+    });
+}
+
+exports.buy = (productID, cb) => {
+    const data = {
+        method: 'PUT',
+        url: domain + "/products/" + productID,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({status: "sold"})
     };
     console.log("Request" , data.body);
     request(data, (err, httpResponse, body) => {
