@@ -10,6 +10,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { SoldComponent } from './sold/sold.component';
 
 
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
 @NgModule({
 
 
@@ -17,7 +19,9 @@ import { SoldComponent } from './sold/sold.component';
     imports: [
         CommonModule,
         LayoutRoutingModule,
-        NgbDropdownModule.forRoot()
+        NgbDropdownModule.forRoot(),
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [LayoutComponent, SidebarComponent, HeaderComponent, SoldComponent]
 })

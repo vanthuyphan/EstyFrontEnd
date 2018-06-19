@@ -4,47 +4,73 @@
             <div class="card-header">Product detail</div>
             <div class="card-body">
                 <p>
-                    <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
-                        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                    <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+                        aria-controls="collapseExample">
                         Toggle
                     </button>
                 </p>
                 <div>
-                        <form role="form">
-                                <div class="form-group input-group">
 
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">P</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Product Name">
+                    <form [formGroup]="productCreateForm" #form="ngForm" (ngSubmit)="createProduct(productCreateForm.value)">
+
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">P</span>
+                            </div>
+                            <mat-form-field class="">
+                                <input 
+                                        class="form-control"
+                                        matInput type="text"
+                                       placeholder="{{'Product Name'}}"
+                                       formControlName="name">
+                            </mat-form-field>
+                        </div>
                                 
-                                    </div>
-                                <div class="form-group input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">P</span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Product description">
-                                </div>
-                                <fieldset class="form-group">
-                                    <label for="exampleInputFile">upload Image</label>
-                                    <input type="file" class="form-control-file" id="exampleInputFile">
-                                </fieldset>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">P</span>
+                            </div>
 
-                                <div class="form-group input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">$</span>
-                                    </div>
-                                   
-                                    <input type="text" class="form-control" placeholder="Price">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">.00</span>
-                                    </div>
-                                </div>
-                             
-                                <button type="submit" class="btn btn-secondary">Submit Button</button>
-                                <button type="reset" class="btn btn-secondary">Reset Button</button>
-                
-                            </form>
+                            <mat-form-field class="">
+                                <input 
+                                        class="form-control"
+                                        matInput type="text"
+                                       placeholder="{{'Description'}}"
+                                       formControlName="desc">
+                            </mat-form-field>
+
+                            
+                        </div>
+
+                        <fieldset class="form-group">
+                            <label for="exampleInputFile">upload Image</label>
+                            <input type="file" class="form-control-file" id="exampleInputFile">
+                        </fieldset>
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">$</span>
+                            </div>
+
+                            <mat-form-field class="">
+                                <input 
+                                        class="form-control"
+                                        matInput type="number"
+                                       placeholder="{{'price'}}"
+                                       formControlName="price">
+                            </mat-form-field>
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00</span>
+                            </div>
+                        </div>
+                        <button mat-raised-button type="submit" class="btn btn-secondary">
+                            {{'Create'}}
+                        </button>
+
+                        <div *ngIf="error">{{error}}</div>
+                       
+                    </form>
 
                 </div>
             </div>

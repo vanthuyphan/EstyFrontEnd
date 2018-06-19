@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+
+import {IProductState,addProduct, getDatas} from "./store";
 @Component({
   selector: 'app-myshop',
   templateUrl: './myshop.component.html',
@@ -7,10 +9,13 @@ import { routerTransition } from '../../router.animations';
   animations:[routerTransition()]
 })
 export class MyshopComponent implements OnInit {
-
-  constructor() { }
+  products = getDatas();
+  constructor() {
+    
+  }
 
   ngOnInit() {
+
   }
 
 }
