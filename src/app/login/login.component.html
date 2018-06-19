@@ -1,21 +1,25 @@
 <div class="login-page" [@routerTransition]>
     <div class="row justify-content-md-center">
         <div class="col-md-4">
-          
-            <h1>Online shop</h1>
-            <form role="form">
-                <div class="form-content">
-                    <div class="form-group">
-                        <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="Email">
-                    </div>
 
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
-                    </div>
-                </div>
-                <a class="btn rounded-btn" [routerLink]="['/']" (click)="onLoggedin()"> Log in </a>
-                &nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>
+            <h1>Login</h1>
+            <form [formGroup]="loginForm" #form="ngForm" (ngSubmit)="login(loginForm.value)">
+                <mat-form-field class="input-container">
+                    <input matInput type="email"
+                           placeholder="{{'email'}}"
+                           formControlName="email">
+                </mat-form-field>
+                <mat-form-field class="input-container">
+                    <input matInput type="password"
+                           placeholder="{{'password'}}"
+                           formControlName="password">
+                </mat-form-field>
+
+                <button mat-raised-button type="submit">
+                    {{'Login'}}
+                </button>
+
+                <div *ngIf="error">{{error}}</div>
             </form>
         </div>
     </div>

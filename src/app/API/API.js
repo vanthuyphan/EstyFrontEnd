@@ -4,7 +4,7 @@
 "use strict";
 
 let axios = require('axios');
-const domain = "https://127.0.0.1:4040/api";
+const domain = "http://127.0.0.1:4040/api";
 
 function encryptPassword(password, timestamp) {
     const passwordMD5 = md5(password).toString();
@@ -73,12 +73,31 @@ exports.register = (name, email, password, cb) => {
     console.log("registering");
     const data = {
         method: 'POST',
-        url: domain,
+        url: domain + "/users",
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             name,
+            email,
+            password
+        })
+    };
+    console.log("Request" , data.body);
+    request(data, (err, httpResponse, body) => {
+        cb(err, body);
+    });
+}
+
+exports.login = (email, password, cb) => {
+    console.log("loggin in");
+    const data = {
+        method: 'POST',
+        url: domain + "/auth/login",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
             email,
             password
         })

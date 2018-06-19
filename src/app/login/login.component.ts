@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { routerTransition } from '../router.animations';
+import {Component, OnInit} from "@angular/core";
+import {routerTransition} from "../router.animations";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import API from "../API/API";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -9,11 +11,24 @@ import { routerTransition } from '../router.animations';
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
-    constructor(public router: Router) {}
+    loginForm: FormGroup;
+    constructor(private formBuilder: FormBuilder,
+                private router: Router
 
-    ngOnInit() {}
+    ) {
+        this.loginForm = this.formBuilder.group({
+            'email': new FormControl('', [Validators.required]),
+            'password': new FormControl('', [Validators.required])
+        });
+    }
 
-    onLoggedin() {
-        localStorage.setItem('isLoggedin', 'true');
+    ngOnInit() {
+    }
+
+    login(user) {
+        API.login(user.email, user.password, (response) => {
+            console.log("Response", response);
+            this.router.navigate(['/products']);
+        });
     }
 }
