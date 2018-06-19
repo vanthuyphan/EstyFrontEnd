@@ -1,6 +1,6 @@
 @import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "mixins";
-
+@import '~bootstrap/dist/css/bootstrap.min.css';
 * {
   @include font-roboto();
 }

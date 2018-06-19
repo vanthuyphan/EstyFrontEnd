@@ -8,27 +8,35 @@ import {CoreModule} from "./core/core.module";
 import {AppComponent} from "./app.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {ProductTopComponent} from "./products/product-top/product-top.component";
+
 import {ProgressBarService} from "./core/shared/progress-bar.service";
 import {ProgressInterceptor} from "./shared/interceptors/progress.interceptor";
 import {TimingInterceptor} from "./shared/interceptors/timing.interceptor";
 import {ServiceWorkerModule} from "@angular/service-worker";
 import {environment} from "../environments/environment";
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 @NgModule({
   imports: [
     BrowserModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
+    
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     SharedModule.forRoot(),
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
   ],
   declarations: [
     AppComponent,
-    ProductTopComponent
+
+   
   ],
   providers: [
     {provide: APP_CONFIG, useValue: AppConfig},

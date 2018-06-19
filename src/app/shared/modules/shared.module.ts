@@ -1,6 +1,5 @@
 import {ModuleWithProviders, NgModule} from "@angular/core";
 import {MaterialModule} from "./material.module";
-import {ProductService} from "../../products/shared/product.service";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {NgxExampleLibraryModule} from "@ismaestro/ngx-example-library";
 
@@ -22,7 +21,7 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
-        ProductService
+        
       ]
     };
   }
