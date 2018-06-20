@@ -142,6 +142,22 @@ exports.products = (cb) => {
     });
 }
 
+exports.getOrders = (cb) => {
+    console.log("loggin in");
+    const data = {
+        method: 'GET',
+        url: domain + "/orders",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+    };
+    console.log("Request" , data.body);
+    request(data, (err, httpResponse, body) => {
+        cb(err, body);
+    });
+}
+
 exports.activeProducts = (cb) => {
     const data = {
         method: 'GET',
@@ -157,8 +173,24 @@ exports.activeProducts = (cb) => {
     });
 }
 
-exports.buy = (productID, cb) => {
+exports.buy = (product, cb) => {
+    console.log("Product", product)
     const data = {
+        method: 'POST',
+        url: domain + "/orders/",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({owner: product._id, name: "Van", shipping: "London", productName: product.name})
+    };
+    console.log("Request" , data.body);
+    request(data, (err, httpResponse, body) => {
+        cb(err, body);
+    });
+}
+
+exports.proceedOrder = (orderId, productID, cb) => {
+    let data = {
         method: 'PUT',
         url: domain + "/products/" + productID,
         headers: {
@@ -170,7 +202,21 @@ exports.buy = (productID, cb) => {
     request(data, (err, httpResponse, body) => {
         cb(err, body);
     });
+
+    data = {
+        method: 'DELETE',
+        url: domain + "/orders/" + orderId,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+    };
+    console.log("Request" , data.body);
+    request(data, (err, httpResponse, body) => {
+        cb(err, body);
+    });
 }
+
 
 exports.deleteProduct = (productID, cb) => {
     const data = {

@@ -1,4 +1,4 @@
-<div [@routerTransition]>
+<div>
     
  
         <form role="form">
@@ -9,61 +9,24 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Price</th>
-                    <th>Delete</th>
+                    <th>Shipping Address</th>
+                    <th>Product</th>
+                    <th>Ship</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="table-active">
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td><button type="reset" class="btn btn-sm btn-secondary">delete</button></td>
-                </tr>
-                <tr class="table-success">
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td><button type="reset" class="btn btn-sm btn-secondary">delete</button></td>
-                </tr>
-                <tr class="table-info">
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td><button type="reset" class="btn btn-sm btn-secondary">delete</button></td>
-                </tr>
-                <tr class="table-warning">
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td><button type="reset" class="btn btn-sm btn-secondary">delete</button></td>
-                </tr>
-                <tr class="table-danger">
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td><button type="reset" class="btn btn-sm btn-secondary">delete</button></td>
-                </tr>
+                <ng-container *ngFor="let item of orders; let i = index">
+                    <tr class="table-active">
+                        <th scope="row">1</th>
+                        <td>{{item.name}}</td>
+                        <td>{{item.shipping}}</td>
+                        <td>{{item.productName}}</td>
+                        <td><button type="reset" class="btn btn-sm btn-secondary" (click)="proceedOrder(item._id, item.owner)">Ship</button></td>
+                    </tr>
+                </ng-container>
                 </tbody>
+
             </table>
-            <div class="alert alert-info">
-                    <b>Your total: </b>2054$
-            </div>
-            <button type="submit" class="btn btn-lg btn-success">Make payment</button>
-          
-                
         </form>
    
 </div>

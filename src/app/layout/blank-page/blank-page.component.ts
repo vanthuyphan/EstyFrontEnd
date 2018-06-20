@@ -18,8 +18,8 @@ export class BlankPageComponent implements OnInit {
         }));
     }
 
-    buyProduct( productID ){
-        API.buy(productID, () => {
+    buyProduct( product ){
+        API.buy(product, () => {
             API.activeProducts((products => {
                 this.current_products = products
             }));
