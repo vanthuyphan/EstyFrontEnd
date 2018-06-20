@@ -173,7 +173,7 @@ exports.activeProducts = (cb) => {
     });
 }
 
-exports.buy = (product, cb) => {
+exports.buy = (product, userValue, cb) => {
     console.log("Product", product)
     const data = {
         method: 'POST',
@@ -181,7 +181,7 @@ exports.buy = (product, cb) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({owner: product._id, name: "Van", shipping: "London", productName: product.name})
+        body: JSON.stringify({owner: product._id, name: userValue.name, shipping: userValue.shipping, productName: product.name})
     };
     console.log("Request" , data.body);
     request(data, (err, httpResponse, body) => {

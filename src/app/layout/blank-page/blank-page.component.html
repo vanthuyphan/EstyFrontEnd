@@ -27,7 +27,25 @@
                             <p class="card-text">
                                 Status: {{item.status}}
                             </p>
-                            <button type="submit" class="btn btn-sm btn-info" (click)="buyProduct(item)">Buy</button>
+                            <form [formGroup]="buyProductForm" #form="ngForm" (ngSubmit)="buyProduct(item, buyProductForm.value)">
+                                <mat-form-field class="input-container">
+                                    <input matInput type="text"
+                                           placeholder="{{'name'}}"
+                                           formControlName="name">
+                                </mat-form-field>
+
+                                <mat-form-field class="input-container">
+                                    <input matInput type="email"
+                                           placeholder="{{'address'}}"
+                                           formControlName="shipping">
+                                </mat-form-field>
+
+                                <button mat-raised-button type="submit">
+                                    {{'Buy'}}
+                                </button>
+
+                                <div *ngIf="error">{{error}}</div>
+                            </form>
                         </div>
                     </div>
         </div>

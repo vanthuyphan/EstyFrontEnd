@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import API from "../../API/API";
+
+
 @Component({
     selector: 'app-blank-page',
     templateUrl: './blank-page.component.html',
@@ -10,7 +13,13 @@ import API from "../../API/API";
 export class BlankPageComponent implements OnInit {
     current_products = [];
     searchValue : string;
-    constructor() {}
+    buyProductForm: FormGroup;
+    constructor(private formBuilder: FormBuilder) {
+        this.buyProductForm = this.formBuilder.group({
+            'name': new FormControl('', [Validators.required]),
+            'shipping': new FormControl('', [Validators.required])
+        });
+    }
 
     ngOnInit() {
         API.activeProducts((products => {
@@ -18,8 +27,8 @@ export class BlankPageComponent implements OnInit {
         }));
     }
 
-    buyProduct( product ){
-        API.buy(product, () => {
+    buyProduct( product, userValue){
+        API.buy(product, userValue, () => {
             API.activeProducts((products => {
                 this.current_products = products
             }));
