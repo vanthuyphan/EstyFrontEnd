@@ -12,11 +12,16 @@ import {SharedModule} from "../../shared/modules/shared.module";
 import { IProductState, rootReduce, INITIAL_STATE } from './store';
 import { NgRedux } from '@angular-redux/store';
 import { FormGroup, Validators, FormBuilder, FormControl, NgForm } from '@angular/forms';
+import { MatButtonModule, MatCardModule, MatToolbarModule } from '@angular/material';
+
+import { MdePopoverModule } from '@material-extended/mde';
 
 
 @NgModule({
-    imports: [CommonModule, MyshopRoutingModule ,FormsModule,ReactiveFormsModule,SharedModule ],
+
+    imports: [CommonModule, MyshopRoutingModule ,FormsModule,ReactiveFormsModule,SharedModule,MatButtonModule, MatCardModule, MatToolbarModule,MdePopoverModule ],
     declarations: [MyshopComponent]
+
 })
 export class MyshopModule {
 
